@@ -1,4 +1,4 @@
-import Evento from "../models/Evento.js"
+import Evento from "../models/Evento"
 import { Request, Response } from 'express';
 
 type Params = {
