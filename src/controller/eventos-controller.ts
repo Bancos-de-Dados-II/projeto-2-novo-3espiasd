@@ -1,4 +1,4 @@
-import Evento from "../models/Evento.js"
+import Evento from "../models/Evento"
 import { Request, Response } from 'express';
 
 type Params = {
@@ -62,7 +62,7 @@ export async function postEvento(req: Request, res: Response) {
 export async function putEvento(req: Request, res: Response): Promise<void> {
     try {
         const { id } = req.params as Params;
-        const event = await Evento.findById(id);
+        const event = await Evento.findByIdAndUpdate(id);
 
         if (!event) {
             res.status(404).json({ message: "Evento não encontrado" });
