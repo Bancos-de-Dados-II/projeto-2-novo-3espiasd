@@ -1,9 +1,8 @@
 import express from 'express';
+import { conectar } from './database/mongo';
+import  eventsRouter from './router/eventos-router';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { conectar } from './database/mongo';
-import  eventsRouter from './router/eventos-router'
-
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 
@@ -13,7 +12,6 @@ app.use(express.json());
 app.use('/Eventos', eventsRouter);
 
 conectar();
-
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
