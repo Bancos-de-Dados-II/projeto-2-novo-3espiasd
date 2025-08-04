@@ -8,32 +8,20 @@ const eventoSchema = new mongoose.Schema({
     descricao:{
         type: String,
     },
-    tipo: {
-        type: String,
-        enum: ['Cultural', 'Social', 'Religioso', 'Recreativo', 'Outro'],
-        required: true
-    },
-    dataHora: {
+    data: {
         type: Date,
         default: Date.now,
     },
-    local: {
-    type: {
-      type: String,
-      enum: ['Point'],
-      required: true
-    },
-    coordinates: {
-      type: [Number],
-      required: true
-    }
-    },
-    descricaoLocal:{
-        type: String,
-    },
-    imagens:{
-        type: [String],
-        required: true,
+     local: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            required: true
+        },
+        coordinates: {
+            type: [Number], 
+            required: true
+        }
     }
 });
 

@@ -8,14 +8,11 @@ type Params = {
 type Paramentro = {
     nome: string;
     descricao?: string;
-    tipo: 'Cultural' | 'Social' | 'Religioso' | 'Recreativo' | 'Outro';
     dataHora?: Date;
     local: {
         type: 'Point';
-        coordinates: [number, number]; // longitude, latitude
+        coordinates: [number, number]; 
     };
-    descricaoLocal?: string;
-    imagens: string[];
 }
 
 export async function getEventos(req: Request, res: Response) {
@@ -43,15 +40,12 @@ export async function getEventosById(req: Request, res: Response): Promise<void>
 
 export async function postEvento(req: Request, res: Response) {
     try {
-        const { nome, descricao, tipo, dataHora, local, descricaoLocal, imagens } = req.body as Paramentro;
+        const { nome, descricao, dataHora, local } = req.body as Paramentro;
         const newEvent = await Evento.create({
             nome,
             descricao,
-            tipo,
             dataHora,
-            local,
-            descricaoLocal,
-            imagens
+            local
         });
         res.status(201).json(newEvent);
     } catch (error) {
