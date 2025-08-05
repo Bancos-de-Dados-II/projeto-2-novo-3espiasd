@@ -3,7 +3,11 @@ import { Request, Response } from 'express';
 
 type Params = {
     id: string
-}
+};
+
+type ParamsBusca = {
+    texto: string
+};
 
 type Paramentro = {
     nome: string;
@@ -13,7 +17,7 @@ type Paramentro = {
         type: 'Point';
         coordinates: [number, number]; 
     };
-}
+};
 
 export async function getEventos(req: Request, res: Response) {
     try {
@@ -24,11 +28,11 @@ export async function getEventos(req: Request, res: Response) {
     }
 }
 
-export async function getEventosById(req: Request, res: Response): Promise<void> {
+export async function getBuscaSearch(req: Request, res: Response): Promise<void> {
     try {
-        const { id } = req.params as Params;
-        const event = await Evento.findById(id);
-        if (!event) {
+        const { texto } = req.params as ParamsBusca;
+        const event = await Evento.find({$text:{$search:texto}});
+        if (event.length == 0) {
             res.status(404).json({ message: "Evento não encontrado" });
             return;
         }

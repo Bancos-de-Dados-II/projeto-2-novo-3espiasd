@@ -1,10 +1,10 @@
 import  {Router} from "express";
-import { getEventos, getEventosById, postEvento, putEvento, delEvento } from "../controller/eventos-controller"
+import { getEventos, getBuscaSearch, postEvento, putEvento, delEvento } from "../controller/eventos-controller"
 
 const eventsRouter = Router();
 
 eventsRouter.get("/", getEventos);
-eventsRouter.get("/:id", getEventosById);
+eventsRouter.get("/search/:texto", getBuscaSearch);
 eventsRouter.post("/", postEvento);
 eventsRouter.put("/:id", putEvento);
 eventsRouter.delete("/:id", delEvento);
